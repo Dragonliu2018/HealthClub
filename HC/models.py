@@ -77,5 +77,6 @@ class AthleticTest(db.Model):
     st_plank = db.Column(db.Float, nullable=False, default=0.0)  # 平板支撑(秒)标化成绩
     st_Pro_Agility = db.Column(db.Float, nullable=False, default=0.0)  # Pro Agility(秒)(敏捷性）
     st_suppleness = db.Column(db.Float, nullable=False, default=0.0)  # 柔韧性(cm)（上文的坐位体前屈）
-    run_20m = db.Column(db.Float, nullable=False, default=0.0)  #20米加速跑(秒)标化成绩
+    st_run_20m = db.Column(db.Float, nullable=False, default=0.0)  #20米加速跑(秒)标化成绩
     st_Vertical_Jump = db.Column(db.Float, nullable=False, default=0.0)#Vertical Jump(cm 垂直跳）
+    st_T_test = db.Column(db.Float, nullable=False, default=0.0)#T-test（秒）（新加入的值） 一般为0.16s-0.31s
