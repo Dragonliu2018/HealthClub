@@ -129,13 +129,9 @@ def get_rugby_test():
     elif st_name != 'null':
         rugbytest_class_list = RugbyTest.query.filter(RugbyTest.st_name == st_name).all()
     elif st_age != 0:
-        rugbytest_class_list = RugbyTest.query.all()
-    ######################              BUG              ######################
-    # elif st_age != 0:
-    #     rugbytest_class_list = RugbyTest.query.filter(
-    #         and_(RugbyTest.st_age >= st_age, RugbyTest.st_age <= st_age + 2)).all()
-    ######################              BUG              ######################
-    # rugbytest_class_list = RugbyTest.query.all()
+        rugbytest_class_list = RugbyTest.query.filter(
+            and_(RugbyTest.st_age >= st_age, RugbyTest.st_age <= st_age + 2)).all()
+
     rugbytest_dict_list  = []
     rugbytest_dict = {
         "id": 0,
@@ -188,13 +184,9 @@ def get_athletic_test():
     elif st_name != 'null':
         athletictest_class_list = AthleticTest.query.filter(AthleticTest.st_name == st_name).all()
     elif st_age != 0:
-        athletictest_class_list = AthleticTest.query.all()
-    ######################              BUG              ######################
-    # elif st_age != 0:
-    #     rugbytest_class_list = RugbyTest.query.filter(
-    #         and_(RugbyTest.st_age >= st_age, RugbyTest.st_age <= st_age + 2)).all()
-    ######################              BUG              ######################
-    # athletictest_class_list = AthleticTest.query.all()
+        athletictest_class_list = AthleticTest.query.filter(
+            and_(AthleticTest.st_age >= st_age, AthleticTest.st_age <= st_age + 2)).all()
+
     athletictest_dict_list  = []
     athletictest_dict = {
         "id": 0,
