@@ -48,6 +48,7 @@ class PhysicalTest(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 主键
     st_name = db.Column(db.String(32), nullable=False, default='未知')  # 姓名
     st_ID = db.Column(db.String(32), nullable=False, default='未知')  # 身份证号(唯一)
+    st_date = db.Column(db.String(32), nullable=False, default='未知') # 测试日期
     st_stature = db.Column(db.Float, nullable=False, default=0.0)  #身高(m)
     st_weight = db.Column(db.Float, nullable=False, default=0.0) # 体重(kg)
     st_grade = db.Column(db.String(32), nullable=False, default='未知')#活动水平(优秀、中等、低下)
@@ -61,6 +62,7 @@ class RugbyTest(db.Model):
     st_name = db.Column(db.String(32), nullable=False, default='未知')  # 姓名
     st_ID = db.Column(db.String(32), nullable=False, default='未知')  # 身份证号(唯一)
     st_age = db.Column(db.Integer, nullable=False, default=0)  # 年龄+
+    st_date = db.Column(db.String(32), nullable=False, default='未知')  # 测试日期+
     st_40yards_dash = db.Column(db.Float, nullable=False, default=0.0)#40码冲刺(秒)
     st_bench_press = db.Column(db.Integer, nullable=False, default=0)# 卧推(个)
     st_vertical_jump = db.Column(db.Float, nullable=False, default=0.0)# 垂直跳（cm）
@@ -75,6 +77,7 @@ class AthleticTest(db.Model):
     st_name = db.Column(db.String(32), nullable=False, default='未知')  # 姓名
     st_ID = db.Column(db.String(32), nullable=False, default='未知')  # 身份证号(唯一)
     st_age = db.Column(db.Integer, nullable=False, default=0)  # 年龄+
+    st_date = db.Column(db.String(32), nullable=False, default='未知')  # 测试日期+
     st_push_up = db.Column(db.Integer, nullable=False, default=0)  # 俯卧撑(次)标化成绩
     st_plank = db.Column(db.Float, nullable=False, default=0.0)  # 平板支撑(秒)标化成绩
     st_Pro_Agility = db.Column(db.Float, nullable=False, default=0.0)  # Pro Agility(秒)(敏捷性）

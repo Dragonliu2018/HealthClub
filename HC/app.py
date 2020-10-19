@@ -33,7 +33,23 @@ def webserver():
 #获取学生信息
 @app.route('/studentinfo',methods=['GET','POST'])
 def get_student_info():
-    studentinfo_class_list = StudentInfo.query.all()
+    # 小程序端传来数据
+    try:
+        st_name = str(json.loads(request.values.get("st_name")))
+        st_age = int(json.loads(request.values.get("st_age")))
+    except:
+        st_name = 'null'
+        st_age = 0
+
+    # 分条件查询
+    if st_name == 'null' and st_age == 0:  # 全部数据
+        studentinfo_class_list = StudentInfo.query.all()
+    elif st_name != 'null':
+        studentinfo_class_list = StudentInfo.query.filter(StudentInfo.st_name == st_name).all()
+    elif st_age != 0:
+        studentinfo_class_list = StudentInfo.query.filter(
+            and_(StudentInfo.st_age >= st_age, StudentInfo.st_age <= st_age + 2)).all()
+
     studentinfo_dict_list  = []
     studentinfo_dict = {
         "id": 0,
@@ -65,25 +81,29 @@ def get_physical_test():
     try:
         st_name = str(json.loads(request.values.get("st_name")))
         st_age = int(json.loads(request.values.get("st_age")))
-        # print(st_age)
+        st_date = str(json.loads(request.values.get("st_date")))
     except:
         st_name = 'null'
         st_age = 0
+        st_date = 'null'
 
     # 分条件查询
-    if st_name == 'null' and st_age == 0:  # 全部数据
+    if st_name == 'null' and st_age == 0 and st_date == 'null':  # 全部数据
         physicaltest_class_list = PhysicalTest.query.all()
     elif st_name != 'null':
         physicaltest_class_list = PhysicalTest.query.filter(PhysicalTest.st_name == st_name).all()
     elif st_age != 0:
         physicaltest_class_list = PhysicalTest.query.filter(
             and_(PhysicalTest.st_age >= st_age, PhysicalTest.st_age <= st_age + 2)).all()
+    elif st_date != 'null':
+        physicaltest_class_list = PhysicalTest.query.filter(PhysicalTest.st_date == st_date).all()
     # physicaltest_class_list = PhysicalTest.query.all()
     physicaltest_dict_list  = []
     physicaltest_dict = {
         "id": 0,
         "st_name": "",
         "st_ID": "",
+        "st_date": "",
         "st_stature": 0.0,
         "st_weight": 0.0,
         "st_grade": "",
@@ -95,13 +115,14 @@ def get_physical_test():
         physicaltest_dict["id"] = st.id
         physicaltest_dict["st_name"] = st.st_name
         physicaltest_dict["st_ID"] = st.st_ID
+        physicaltest_dict["st_date"] = st.st_date
         physicaltest_dict["st_stature"] = st.st_stature
         physicaltest_dict["st_weight"] = st.st_weight
         physicaltest_dict["st_grade"] = st.st_grade
         physicaltest_dict["st_age"] = st.st_age
         physicaltest_dict["st_sex"] = st.st_sex
         physicaltest_dict["st_position"] = st.st_position
-
+        # print(st.st_date.isoformat()[:10])
         physicaltest_dict_list.append(physicaltest_dict.copy())#加入列表
 
 
@@ -118,25 +139,29 @@ def get_rugby_test():
     try:
         st_name = str(json.loads(request.values.get("st_name")))
         st_age = int(json.loads(request.values.get("st_age")))
-        # print(st_age)
+        st_date = str(json.loads(request.values.get("st_date")))
     except:
         st_name = 'null'
         st_age = 0
+        st_date = 'null'
 
     # 分条件查询
-    if st_name == 'null' and st_age == 0:  # 全部数据
+    if st_name == 'null' and st_age == 0 and st_date == 'null':  # 全部数据
         rugbytest_class_list = RugbyTest.query.all()
     elif st_name != 'null':
         rugbytest_class_list = RugbyTest.query.filter(RugbyTest.st_name == st_name).all()
     elif st_age != 0:
         rugbytest_class_list = RugbyTest.query.filter(
             and_(RugbyTest.st_age >= st_age, RugbyTest.st_age <= st_age + 2)).all()
+    elif st_date != 'null':
+        rugbytest_class_list = RugbyTest.query.filter(RugbyTest.st_date == st_date).all()
 
     rugbytest_dict_list  = []
     rugbytest_dict = {
         "id": 0,
         "st_name": "",
         "st_ID": "",
+        "st_date": "",
         "st_40yards_dash": 0.0,
         "st_bench_press": 0.0,
         "st_vertical_jump": "",
@@ -149,6 +174,7 @@ def get_rugby_test():
         rugbytest_dict["id"] = st.id
         rugbytest_dict["st_name"] = st.st_name
         rugbytest_dict["st_ID"] = st.st_ID
+        rugbytest_dict["st_date"] = st.st_date
         rugbytest_dict["st_40yards_dash"] = st.st_40yards_dash
         rugbytest_dict["st_bench_press"] = st.st_bench_press
         rugbytest_dict["st_vertical_jump"] = st.st_vertical_jump
@@ -173,25 +199,28 @@ def get_athletic_test():
     try:
         st_name = str(json.loads(request.values.get("st_name")))
         st_age = int(json.loads(request.values.get("st_age")))
-        # print(st_age)
+        st_date = str(json.loads(request.values.get("st_date")))
     except:
         st_name = 'null'
         st_age = 0
+        st_date = 'null'
 
     # 分条件查询
-    if st_name == 'null' and st_age == 0:  # 全部数据
+    if st_name == 'null' and st_age == 0 and st_date == 'null':  # 全部数据
         athletictest_class_list = AthleticTest.query.all()
     elif st_name != 'null':
         athletictest_class_list = AthleticTest.query.filter(AthleticTest.st_name == st_name).all()
     elif st_age != 0:
         athletictest_class_list = AthleticTest.query.filter(
             and_(AthleticTest.st_age >= st_age, AthleticTest.st_age <= st_age + 2)).all()
-
+    elif st_date != 'null':
+        athletictest_class_list = AthleticTest.query.filter(AthleticTest.st_date == st_date).all()
     athletictest_dict_list  = []
     athletictest_dict = {
         "id": 0,
         "st_name": "",
         "st_ID": "",
+        "st_date": "",
         "st_push_up": 0,
         "st_plank": 0,
         "st_Pro_Agility": "",
@@ -204,6 +233,7 @@ def get_athletic_test():
         athletictest_dict["id"] = st.id
         athletictest_dict["st_name"] = st.st_name
         athletictest_dict["st_ID"] = st.st_ID
+        athletictest_dict["st_date"] = st.st_date
         athletictest_dict["st_push_up"] = st.st_push_up
         athletictest_dict["st_plank"] = st.st_plank
         athletictest_dict["st_Pro_Agility"] = st.st_Pro_Agility
