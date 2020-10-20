@@ -161,6 +161,7 @@ def get_rugby_test():
         "id": 0,
         "st_name": "",
         "st_ID": "",
+        "st_age": 0,
         "st_date": "",
         "st_40yards_dash": 0.0,
         "st_bench_press": 0.0,
@@ -174,6 +175,7 @@ def get_rugby_test():
         rugbytest_dict["id"] = st.id
         rugbytest_dict["st_name"] = st.st_name
         rugbytest_dict["st_ID"] = st.st_ID
+        rugbytest_dict["st_age"] = st.st_age
         rugbytest_dict["st_date"] = st.st_date
         rugbytest_dict["st_40yards_dash"] = st.st_40yards_dash
         rugbytest_dict["st_bench_press"] = st.st_bench_press
@@ -220,6 +222,7 @@ def get_athletic_test():
         "id": 0,
         "st_name": "",
         "st_ID": "",
+        "st_age": 0,
         "st_date": "",
         "st_push_up": 0,
         "st_plank": 0,
@@ -227,12 +230,14 @@ def get_athletic_test():
         "st_suppleness": 0,
         "st_run_20m": "",
         "st_Vertical_Jump": "",
-        "st_T_test": 0
+        "st_T_test": 0,
+        "st_long_jump": 0,
     }
     for st in athletictest_class_list:
         athletictest_dict["id"] = st.id
         athletictest_dict["st_name"] = st.st_name
         athletictest_dict["st_ID"] = st.st_ID
+        athletictest_dict["st_age"] = st.st_age
         athletictest_dict["st_date"] = st.st_date
         athletictest_dict["st_push_up"] = st.st_push_up
         athletictest_dict["st_plank"] = st.st_plank
@@ -241,6 +246,7 @@ def get_athletic_test():
         athletictest_dict["st_run_20m"] = st.st_run_20m
         athletictest_dict["st_Vertical_Jump"] = st.st_Vertical_Jump
         athletictest_dict["st_T_test"] = st.st_T_test
+        athletictest_dict["st_long_jump"] = st.st_long_jump
 
         athletictest_dict_list.append(athletictest_dict.copy())#加入列表
 

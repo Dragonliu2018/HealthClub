@@ -85,3 +85,4 @@ class AthleticTest(db.Model):
     st_run_20m = db.Column(db.Float, nullable=False, default=0.0)  #20米加速跑(秒)标化成绩
     st_Vertical_Jump = db.Column(db.Float, nullable=False, default=0.0)#Vertical Jump(cm 垂直跳）
     st_T_test = db.Column(db.Float, nullable=False, default=0.0)#T-test（秒）（新加入的值） 一般为0.16s-0.31s
+    st_long_jump = db.Column(db.Float, nullable=False, default=0.0)  # 跳远（cm）
