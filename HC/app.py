@@ -47,8 +47,11 @@ def get_student_info():
     elif st_name != 'null':
         studentinfo_class_list = StudentInfo.query.filter(StudentInfo.st_name == st_name).all()
     elif st_age != 0:
-        studentinfo_class_list = StudentInfo.query.filter(
-            and_(StudentInfo.st_age >= st_age, StudentInfo.st_age <= st_age + 2)).all()
+        if st_age >= 10:
+            studentinfo_class_list = StudentInfo.query.filter(StudentInfo.st_age >= st_age).all()
+        else:
+            studentinfo_class_list = StudentInfo.query.filter(
+                and_(StudentInfo.st_age >= st_age, StudentInfo.st_age <= st_age + 2)).all()
 
     studentinfo_dict_list  = []
     studentinfo_dict = {
@@ -93,8 +96,11 @@ def get_physical_test():
     elif st_name != 'null':
         physicaltest_class_list = PhysicalTest.query.filter(PhysicalTest.st_name == st_name).all()
     elif st_age != 0:
-        physicaltest_class_list = PhysicalTest.query.filter(
-            and_(PhysicalTest.st_age >= st_age, PhysicalTest.st_age <= st_age + 2)).all()
+        if st_age >= 10:
+            physicaltest_class_list = PhysicalTest.query.filter(PhysicalTest.st_age >= st_age).all()
+        else:
+            physicaltest_class_list = PhysicalTest.query.filter(
+                and_(PhysicalTest.st_age >= st_age, PhysicalTest.st_age <= st_age + 2)).all()
     elif st_date != 'null':
         physicaltest_class_list = PhysicalTest.query.filter(PhysicalTest.st_date == st_date).all()
     # physicaltest_class_list = PhysicalTest.query.all()
@@ -151,8 +157,11 @@ def get_rugby_test():
     elif st_name != 'null':
         rugbytest_class_list = RugbyTest.query.filter(RugbyTest.st_name == st_name).all()
     elif st_age != 0:
-        rugbytest_class_list = RugbyTest.query.filter(
-            and_(RugbyTest.st_age >= st_age, RugbyTest.st_age <= st_age + 2)).all()
+        if st_age >= 10:
+            rugbytest_class_list = RugbyTest.query.filter(RugbyTest.st_age >= st_age).all()
+        else:
+            rugbytest_class_list = RugbyTest.query.filter(
+                and_(RugbyTest.st_age >= st_age, RugbyTest.st_age <= st_age + 2)).all()
     elif st_date != 'null':
         rugbytest_class_list = RugbyTest.query.filter(RugbyTest.st_date == st_date).all()
 
@@ -213,8 +222,11 @@ def get_athletic_test():
     elif st_name != 'null':
         athletictest_class_list = AthleticTest.query.filter(AthleticTest.st_name == st_name).all()
     elif st_age != 0:
-        athletictest_class_list = AthleticTest.query.filter(
-            and_(AthleticTest.st_age >= st_age, AthleticTest.st_age <= st_age + 2)).all()
+        if st_age >= 10:
+            athletictest_class_list = AthleticTest.query.filter(AthleticTest.st_age >= st_age).all()
+        else:
+            athletictest_class_list = AthleticTest.query.filter(
+                and_(AthleticTest.st_age >= st_age, AthleticTest.st_age <= st_age + 2)).all()
     elif st_date != 'null':
         athletictest_class_list = AthleticTest.query.filter(AthleticTest.st_date == st_date).all()
     athletictest_dict_list  = []
