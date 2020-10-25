@@ -1,16 +1,7 @@
 #encoding: utf-8
 from exts import db
 from datetime import datetime
-
-class StudentInfo(db.Model):
-    __tablename__ = 'student_info'
-    # __searchable__ = ['student_name'] #指定要索引的字段
-    id = db.Column(db.Integer,primary_key=True,autoincrement=True)#主键
-    st_name = db.Column(db.String(32),nullable=False, default='no name')#名字
-    st_ID = db.Column(db.String(32),nullable=False, default='no ID')#身份证号(唯一)
-    st_Tel = db.Column(db.String(32), nullable=False, default='no Tel')#手机号码
-    st_age = db.Column(db.Integer, nullable=False, default=0)#年龄
-
+#学生分数(未用)
 class StudentScore(db.Model):
     __tablename__ = 'student_score'
     # __searchable__ = ['student_name'] #指定要索引的字段
@@ -28,7 +19,7 @@ class StudentScore(db.Model):
     Vertical_Jump = db.Column(db.Float, nullable=False, default=0.0)#Vertical Jump(cm)
     suppleness = db.Column(db.Float, nullable=False, default=0.0)#柔韧性(cm)
     age_group = db.Column(db.String(32), nullable=False, default='no age group')#所属年龄组
-
+#标准分数(未用)
 class StandardScore(db.Model):
     __tablename__ = 'standard_score'
     # __searchable__ = ['student_name'] #指定要索引的字段
@@ -86,3 +77,33 @@ class AthleticTest(db.Model):
     st_Vertical_Jump = db.Column(db.Float, nullable=False, default=0.0)#Vertical Jump(cm 垂直跳）
     st_T_test = db.Column(db.Float, nullable=False, default=0.0)#T-test（秒）（新加入的值） 一般为0.16s-0.31s
     st_long_jump = db.Column(db.Float, nullable=False, default=0.0)  # 跳远（cm）
+#大测试表
+class FatherTest(db.Model):
+    __tablename__ = 'father_test'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 主键
+    ft_name = db.Column(db.String(32), nullable=False, default='未知')  # 大测试名称
+#小测试表
+class ChildTest(db.Model):
+    __tablename__ = 'child_test'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 主键
+    ft_name = db.Column(db.String(32), nullable=False, default='未知')  # 所属的大测试名称
+    ct_name = db.Column(db.String(32), nullable=False, default='未知')  # 小测试名称
+#班级信息
+class ClassInfo(db.Model):
+    __tablename__ = 'class_info'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 主键
+    ft_name = db.Column(db.String(32), nullable=False, default='未知')  # 所属的大测试名称
+    ct_name = db.Column(db.String(32), nullable=False, default='未知')  # 所属的小测试名称
+    cl_name = db.Column(db.String(32), nullable=False, default='未知')  # 班级名称
+#学生信息
+class StudentInfo(db.Model):
+    __tablename__ = 'student_info'
+    # __searchable__ = ['student_name'] #指定要索引的字段
+    id = db.Column(db.Integer,primary_key=True,autoincrement=True)#主键
+    ft_name = db.Column(db.String(32), nullable=False, default='未知')  # 所属的大测试名称
+    ct_name = db.Column(db.String(32), nullable=False, default='未知')  # 所属的小测试名称
+    cl_name = db.Column(db.String(32), nullable=False, default='未知')  # 所属的班级名称
+    st_name = db.Column(db.String(32),nullable=False, default='no name')# 学生名字
+    st_ID = db.Column(db.String(32),nullable=False, default='no ID')# 身份证号(唯一)
+    st_Tel = db.Column(db.String(32), nullable=False, default='no Tel')# 手机号码
+    st_age = db.Column(db.Integer, nullable=False, default=0)# 年龄

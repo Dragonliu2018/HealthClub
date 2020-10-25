@@ -3,7 +3,9 @@ import config
 from exts import db
 import json
 from flask_msearch import Search
-from models import StudentInfo, StudentScore, StandardScore, PhysicalTest, RugbyTest, AthleticTest
+from models import StudentInfo, StudentScore, StandardScore, PhysicalTest, \
+    RugbyTest, AthleticTest, FatherTest, ChildTest, ClassInfo
+from funcs import get_str_first_aplha
 #部署
 from werkzeug.contrib.fixers import ProxyFix
 from flask_cors import CORS
@@ -28,6 +30,7 @@ db.create_all(app=create_app())
 @app.route('/',methods=['GET','POST'])
 def webserver():
     str = 'Dragon Liu!'
+    get_str_first_aplha(str)
     return str
 
 #获取学生信息
@@ -267,6 +270,86 @@ def get_athletic_test():
     js = json.dumps(athletictest_dict_list)
     # s1 = json.loads(js)
     # print(s1['student_name'][0].grade)
+    return js
+
+#获取大测试
+@app.route('/fathertest',methods=['GET','POST'])
+def get_father_test():
+    fathertest_class_list = FatherTest.query.all()
+    fathertest_dict_list  = []
+    fathertest_dict = {
+        "id": 0,
+        "ft_name": "",
+    }
+    for ft in fathertest_class_list:
+        fathertest_dict["id"] = ft.id
+        fathertest_dict["ft_name"] = ft.ft_name
+
+        fathertest_dict_list.append(fathertest_dict.copy())#加入列表
+
+
+    print( fathertest_dict_list )
+    js = json.dumps(fathertest_dict_list)
+    # s1 = json.loads(js)
+    # print(s1['student_name'][0].grade)
+    return js
+
+#获取小测试
+@app.route('/childtest',methods=['GET','POST'])
+def get_child_test():
+    # 小程序端传来数据
+    try:
+        ft_name = str(json.loads(request.values.get("ft_name")))
+    except:
+        ft_name = 'null'
+    print(ft_name)
+    # 分条件查询
+    childtest_class_list = ChildTest.query.filter(ChildTest.ft_name == ft_name).all()
+    childtest_dict_list  = []
+    childtest_dict = {
+        "id": 0,
+        "ct_name": "",
+    }
+    for ct in childtest_class_list:
+        childtest_dict["id"] = ct.id
+        childtest_dict["ct_name"] = ct.ct_name
+
+        childtest_dict_list.append(childtest_dict.copy())#加入列表
+
+    print( childtest_dict_list )
+    js = json.dumps(childtest_dict_list)
+    return js
+
+#获取班级
+@app.route('/classinfo',methods=['GET','POST'])
+def get_class_info():
+    # 小程序端传来数据
+    try:
+        ft_name = str(json.loads(request.values.get("ft_name")))
+        ct_name = str(json.loads(request.values.get("ct_name")))
+    except:
+        ft_name = 'null'
+        ct_name = 'null'
+    # 分条件查询
+    classinfo_class_list = ClassInfo.query.filter(
+        and_(ClassInfo.ft_name == ft_name, ClassInfo.ct_name == ct_name)).all()
+    classinfo_dict_list  = []
+    classinfo_dict = {
+        "id": 0,
+        "ft_name": "",
+        "ct_name": "",
+        "cl_name": "",
+    }
+    for cl in classinfo_class_list:
+        classinfo_dict["id"] = cl.id
+        classinfo_dict["ft_name"] = cl.ft_name
+        classinfo_dict["ct_name"] = cl.ct_name
+        classinfo_dict["cl_name"] = cl.cl_name
+
+        classinfo_dict_list.append(classinfo_dict.copy())#加入列表
+
+    print( classinfo_dict_list )
+    js = json.dumps(classinfo_dict_list)
     return js
 
 if __name__ == '__main__':
