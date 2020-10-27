@@ -33,10 +33,13 @@ class StandardScore(db.Model):
     T_test = db.Column(db.Float, nullable=False, default=0.0)  # T-test(秒)
     Vertical_Jump = db.Column(db.Float, nullable=False, default=0.0)  # Vertical Jump(cm)
     suppleness = db.Column(db.Float, nullable=False, default=0.0)  # 柔韧性(cm)
-#身体测试表
+#身体质量测试表
 class PhysicalTest(db.Model):
     __tablename__ = 'physical_test'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 主键
+    ft_name = db.Column(db.String(32), nullable=False, default='身体质量测试')  # 大测试名称
+    ct_name = db.Column(db.String(32), nullable=False, default='未知')  # 小测试名称
+    cl_name = db.Column(db.String(32), nullable=False, default='未知')  # 班级
     st_name = db.Column(db.String(32), nullable=False, default='未知')  # 姓名
     st_ID = db.Column(db.String(32), nullable=False, default='未知')  # 身份证号(唯一)
     st_date = db.Column(db.String(32), nullable=False, default='未知') # 测试日期
@@ -46,10 +49,13 @@ class PhysicalTest(db.Model):
     st_age = db.Column(db.Integer, nullable=False, default=0)#年龄
     st_sex = db.Column(db.String(32), nullable=False, default='未知')# 性别
     st_position = db.Column(db.String(32), nullable=False, default='未知')# 运动员专项
-#橄榄球测试表
+#橄榄球各项测试表
 class RugbyTest(db.Model):
     __tablename__ = 'rugby_test'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 主键
+    ft_name = db.Column(db.String(32), nullable=False, default='橄榄球各项测试')  # 大测试名称
+    ct_name = db.Column(db.String(32), nullable=False, default='未知')  # 小测试名称
+    cl_name = db.Column(db.String(32), nullable=False, default='未知')  # 班级
     st_name = db.Column(db.String(32), nullable=False, default='未知')  # 姓名
     st_ID = db.Column(db.String(32), nullable=False, default='未知')  # 身份证号(唯一)
     st_age = db.Column(db.Integer, nullable=False, default=0)  # 年龄+
@@ -65,6 +71,9 @@ class RugbyTest(db.Model):
 class AthleticTest(db.Model):
     __tablename__ = 'athletic_test'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 主键
+    ft_name = db.Column(db.String(32), nullable=False, default='运动能力测试')  # 大测试名称
+    ct_name = db.Column(db.String(32), nullable=False, default='未知')  # 小测试名称
+    cl_name = db.Column(db.String(32), nullable=False, default='未知')  # 班级
     st_name = db.Column(db.String(32), nullable=False, default='未知')  # 姓名
     st_ID = db.Column(db.String(32), nullable=False, default='未知')  # 身份证号(唯一)
     st_age = db.Column(db.Integer, nullable=False, default=0)  # 年龄+
@@ -107,3 +116,4 @@ class StudentInfo(db.Model):
     st_ID = db.Column(db.String(32),nullable=False, default='no ID')# 身份证号(唯一)
     st_Tel = db.Column(db.String(32), nullable=False, default='no Tel')# 手机号码
     st_age = db.Column(db.Integer, nullable=False, default=0)# 年龄
+    st_sex = db.Column(db.String(32), nullable=False, default='未知')  # 性别
